@@ -1,0 +1,5 @@
+<servlet>
+<servlet-name>JMSServlet</servlet-name>
+<servlet-class>com.jmstest.queue</servlet-class>
+<load-on-startup>1</load-on-startup>
+</servlet>

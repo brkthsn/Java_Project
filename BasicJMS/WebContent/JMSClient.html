@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+
+www.fatihkabakci.com 
+
+-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+	function init() {
+		var div_queue = document.getElementById('div_queue');
+		div_queue.style.visibility = 'hidden';
+		var div_topic = document.getElementById('div_topic');
+		div_topic.style.visibility = 'hidden';
+	}
+
+	function radioSet(radio) {
+		var div_queue = document.getElementById('div_queue');
+		var div_topic = document.getElementById('div_topic');
+		if (radio.value == "Queue") {
+			div_queue.style.visibility = 'visible';
+			div_topic.style.visibility = 'hidden';
+		} else if (radio.value == "Topic") {
+			div_queue.style.visibility = 'hidden';
+			div_topic.style.visibility = 'visible';
+		}
+	}
+</script>
+</head>
+<body onload="init()">
+	Queue
+	<input type="radio" name="qt" value="Queue" onclick="radioSet(this)">
+	<br /> Topic
+	<input type="radio" name="qt" value="Topic" onclick="radioSet(this)">
+	<br />
+	<div id="div_queue">
+		<h3>Queue messaging</h3>
+		<form id="form_send" method="post" action="JMSServlet"
+			target="_blank;">
+			<h3>Click button to send message</h3>
+			<input type="text" name="qmessage"><input type="hidden"
+				name="queue"><input type="submit" name="bsend"
+				value="Send message">
+		</form>
+
+		<form id="form_receive" method="post" action="JMSServlet"
+			target="_blank;">
+			<h3>Click button to receive message</h3>
+			<input type="hidden" name="queue"><input type="submit"
+				name="breceive" value="Receive message">
+		</form>
+	</div>
+
+	<div id="div_topic">
+		<h3>Topic messaging</h3>
+		<form id="form_publish" method="post" action="JMSServlet"
+			target="_blank;">
+			<h3>Click button to publish message</h3>
+			<input type="text" name="tmessage"><input type="hidden"
+				name="topic"><input type="submit" name="bpublish"
+				value="Publish message">
+		</form>
+
+		<form id="form_subscribe" method="post" action="JMSServlet"
+			target="_blank;">
+			<h3>Click button to subscribe message</h3>
+			<input type="hidden" name="topic"><input type="submit"
+				name="bsubscribe" value="Subscribe message">
+		</form>
+	</div>
+</body>
+</html>
