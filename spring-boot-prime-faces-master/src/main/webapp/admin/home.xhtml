@@ -1,0 +1,100 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<f:view>
+	<h:head>
+		<title>Home Web Site</title>
+	</h:head>
+
+
+	<h:form>
+		<p:dataTable id="tbl" var="product" value="#{basicsBean.orderList}">
+			<p:column headerText="Code">
+				<h:outputText value="#{product.orderNo}" />
+			</p:column>
+
+			<p:column headerText="Name">
+				<h:outputText value="#{product.productName}" />
+			</p:column>
+		</p:dataTable>
+		<p:commandLink value="PDF" styleClass="p-mr-2 p-mb-2">
+			<p:dataExporter type="xls" target="tbl" fileName="IvoiceList" />
+		</p:commandLink>
+		
+		<p:commandButton id="cmdLinkExport" value="Excel'e Çıkar"
+										styleClass="ui-menuitem-link ui-corner-all" immediate="true"
+										 process="@this"
+										ajax="false"  >
+										<p:dataExporter type="xls" target="tbl"
+											fileName="Fatura_Listesi" />
+									</p:commandButton>
+		
+	</h:form>
+
+	<h:body>
+
+		<h:outputLink value="${pageContext.request.contextPath}/logout">
+			<h:graphicImage library="images" name="logout.png" />
+		</h:outputLink>
+		<ui:include src="../header.xhtml" />
+
+		<div>
+			<h:outputText
+				value="#{language.getMessage('registration.success-message')}" />
+		</div>
+		<h3>HOME</h3>
+
+
+		<h2>Primefaces Date Range Picker example</h2>
+		<p>
+			<p:outputLabel for="dateSelectBtn" value="Test" />
+		</p>
+		<p:commandButton id="dateSelectBtn" value="Select new date range"
+			type="button" onclick="PF('dateRangeDlg').show();" />
+
+		<p:dialog closable="false" header="Date Range Picker"
+			resizable="false" widgetVar="dateRangeDlg" minHeight="40"
+			modal="true">
+			<p:outputPanel>
+				<h:form>
+					<p:calendar id="idStartDate" binding="#{selectedDate}"
+						value="#{basicsBean.selectedDate}">
+					</p:calendar>
+					<p:calendar id="idEndDate" value="#{basicsBean.endDate}">
+						<f:validator validatorId="dateRangeValidator" />
+						<f:attribute name="startDateAttr" value="#{selectedDate}" />
+					</p:calendar>
+					<br />
+					<p:messages id="messages" showDetail="true" autoUpdate="true" />
+					<br />
+					<p:commandButton value="Save" icon="ui-icon-check" />
+					<p:commandButton value="Cancel" icon="ui-icon-close"
+						immediate="true" onclick="PF('dateRangeDlg').hide()" />
+				</h:form>
+
+
+
+			</p:outputPanel>
+		</p:dialog>
+
+		<h:form>
+
+			<p:selectCheckboxMenu id="multiple"
+				value="#{basicsBean.selectedCities2}" label="Cities"
+				style="min-width: 15rem" multiple="true" filter="true"
+				filterMatchMode="startsWith" panelStyle="width: 30rem"
+				scrollHeight="250">
+				<f:selectItems value="#{basicsBean.cities}" />
+
+
+			</p:selectCheckboxMenu>
+
+		</h:form>
+
+	</h:body>
+
+</f:view>
+</html>

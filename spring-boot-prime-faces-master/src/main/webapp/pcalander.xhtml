@@ -1,0 +1,38 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+
+<f:view>
+	<h:head>
+		<title>Home Web Site</title>
+	</h:head>
+	<h:body>
+
+        <h:form>
+            <b>Choose a number : </b>
+            <p:spinner id="spinner" value="#{basicsBean.selectedNumber}">
+                <p:ajax update="chosenNumber" process="@this"/>
+            </p:spinner>
+            <br/>
+            <br/>
+            <b>Choose a date : </b>
+            <p:calendar value="#{basicsBean.selectedDate}" pattern="dd.MM.yyyy HH:mm:ss">
+                <p:ajax event="dateSelect" update="chosenDate" process="@this"/>
+            </p:calendar>
+
+            <hr/>
+
+            <b>Chosen number is : </b><p:outputLabel id="chosenNumber" value="#{basicsBean.selectedNumber}"/>
+            <br/>
+            <b>Chosen Date is : </b><p:outputLabel id="chosenDate" value="#{basicsBean.selectedDate}">
+            <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"/>
+        </p:outputLabel>
+        </h:form>
+    </h:body>
+
+</f:view>
+</html>
