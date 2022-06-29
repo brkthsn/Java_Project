@@ -16,7 +16,7 @@
 		<project.java.version>1.8</project.java.version>
 
 		<!-- Versions -->
-		<slf4j.version>1.7.5</slf4j.version>
+		<slf4j.version>1.7.26</slf4j.version>
 		<spring.version>4.0.5.RELEASE</spring.version>
 		<cxf.version>3.0.0</cxf.version>
 	</properties>
